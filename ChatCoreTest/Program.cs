@@ -7,6 +7,7 @@ namespace ChatCoreTest
   {
     private static byte[] m_PacketData;
     private static uint m_Pos;
+        private static int toRead;
 
     public static void Main(string[] args)
     {
@@ -22,8 +23,40 @@ namespace ChatCoreTest
       {
         Console.Write(m_PacketData[i] + ", ");
       }
+
+          while(true)
+            {
+                Read(m_PacketData, toRead);
+            }
             Console.ReadLine();
     }
+
+        /*private static void _Write(byte[] byteData)
+        {
+            // converter little-endian to network's big-endian
+            if (BitConverter.IsLittleEndian)
+            {
+                Array.Reverse(byteData);
+            }
+
+            byteData.CopyTo(m_PacketData, m_Pos);
+            m_Pos += (uint)byteData.Length;
+        }*/
+
+
+        //老師對不起，我的程度比較差，上課沒能理解過來，剛好之前兩堂課的錄影檔都沒聲音或是沒錄到
+        //我自己試著讀範例...憑印象寫了一些，但是都不對@@
+        private static void Read(byte[] byteData, string )
+        {
+            byte[] xbyte = new byte[toRead];
+            if (BitConverter.IsLittleEndian)
+            {
+                Array.Reverse(byteData);
+            }
+
+            byteData.CopyTo(m_PacketData, m_Pos);
+            m_Pos += (uint)byteData.Length;
+        }
 
     // write an integer into a byte array
     private static bool Write(int i)
